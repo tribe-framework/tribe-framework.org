@@ -1,0 +1,165 @@
+{
+    "webapp": {
+        "name": "tribe",
+        "slug": "webapp",
+        "description": "An open source project management framework.",
+        "url": "https://postcodesolutions.com",
+        "format": "types.json",
+        "version": "1.0",
+        "searchable_types": [
+            "section", "page"
+        ],
+        "allow_type_change": false,
+        "display_activity_log": false,
+        "soft_delete_records": false
+    },
+    "user": {
+        "name": "user",
+        "slug": "user",
+        "plural": "users",
+        "description": "List of users.",
+        "roles": {
+            "admin": {
+                "role": "admin",
+                "slug": "admin",
+                "title": "Admin"
+            },
+            "editor": {
+                "role": "crew",
+                "slug": "editor",
+                "title": "Editor"
+            },
+            "guest_writer": {
+                "role": "member",
+                "slug": "guest_writer",
+                "title": "Guest writer"
+            },
+            "subscriber": {
+                "role": "visitor",
+                "slug": "subscriber",
+                "title": "Newsletter subscriber"
+            }
+        },
+        "modules": [
+            {
+                "input_primary": true,
+                "input_placeholder": "Enter User ID",
+                "input_slug": "user_id",
+                "var_type": "string",
+                "input_type": "hidden",
+                "input_unique": true,
+                "list_field": true,
+                "list_searchable": true,
+                "list_sortable": false
+            },
+            {
+                "input_slug": "email",
+                "input_placeholder": "Enter email",
+                "input_type": "email",
+                "var_type": "string",
+                "input_unique": true,
+                "list_field": true,
+                "list_searchable": true,
+                "list_sortable": true
+            },
+            {
+                "input_slug": "password",
+                "input_placeholder": "Enter password",
+                "input_type": "password",
+                "var_type": "string",
+                "input_unique": false,
+                "input_confirm": true,
+                "list_field": false,
+                "list_searchable": false,
+                "list_sortable": false
+            }
+        ]
+    },
+    "section": {
+        "name": "section",
+        "slug": "section",
+        "plural": "sections",
+        "description": "List of sections.",
+        "disallow_editing": false,
+        "modules": [
+            {
+                "input_slug": "title",
+                "input_primary": true,
+                "input_type": "text",
+                "var_type": "string",
+                "input_placeholder": "Enter section title",
+                "input_unique": true,
+                "list_field": true,
+                "list_searchable": true,
+                "list_sortable": true
+            }
+        ]
+    },
+    "page": {
+        "name": "page",
+        "slug": "page",
+        "plural": "pages",
+        "description": "List of pages.",
+        "disallow_editing": false,
+        "modules": [
+            {
+                "input_slug": "title",
+                "input_primary": true,
+                "input_type": "text",
+                "var_type": "string",
+                "input_placeholder": "Enter page title",
+                "input_unique": false,
+                "list_field": true,
+                "list_searchable": true,
+                "list_sortable": true
+            },
+            {
+                "input_slug": "body",
+                "input_placeholder": "Enter content",
+                "input_type": "editorjs",
+                "var_type": "json",
+                "input_unique": false
+            },
+            {
+                "input_slug": "section",
+                "input_placeholder": "Select section",
+                "input_type": "select",
+                "var_type": "string",
+                "input_unique": false
+            },
+            {
+                "input_slug": "publishing_date",
+                "input_placeholder": "Enter publishing date",
+                "input_type": "date",
+                "var_type": "string",
+                "input_unique": false,
+                "list_field": true,
+                "list_searchable": true,
+                "list_sortable": true
+            },
+            {
+                "input_slug": "pinned",
+                "input_type": "checkbox",
+                "var_type": "bool",
+                "input_placeholder": "Pin to top",
+                "input_unique": false,
+                "list_field": true,
+                "list_search": false,
+                "list_sort": true
+            },
+            {
+                "input_slug": "cover_media",
+                "input_placeholder": "Enter content cover URL",
+                "input_type": "url",
+                "var_type": "string",
+                "input_unique": false
+            },
+            {
+                "input_slug": "files",
+                "input_placeholder": "Upload files",
+                "input_type": "file_uploader",
+                "input_unique": false
+            }
+        ]
+    }
+}
