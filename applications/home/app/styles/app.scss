@@ -14,4 +14,15 @@
 	height: 100vh;
 	width: 100vw;
 }
+
+#scroll-hint {
+	position: absolute;
+	left: 50%;
+	bottom: 5rem;
+}
+
+.animate__slowest {
+	--animate-duration: 8s;
+}
+
 @import "ember-power-select";

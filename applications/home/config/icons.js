@@ -2,6 +2,7 @@ module.exports = function () {
   return {
     'pro-light-svg-icons': [
       'table-list',
+      'chevron-double-down'
     ],
     'pro-regular-svg-icons': [
       'table-list',

@@ -91,6 +91,7 @@
     "edition": "octane"
   },
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "^6.2.1"
+    "@fortawesome/free-brands-svg-icons": "^6.2.1",
+    "animate.css": "^4.1.1"
   }
 }

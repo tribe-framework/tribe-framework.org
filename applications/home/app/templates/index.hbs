@@ -1,15 +1,16 @@
 {{page-title "Index"}}
 
-<section class="flame-bg d-flex align-items-center justify-content-center">
-  <div class="py-6 container px-0 text-center text-dark">
-    <img src="/assets/img/flame.png" width="200">
+<main>
+  <div class="container">
+    <div class="vh-100 row align-items-center position-relative">
+      <div class="col">
+        <h1 class="fw-lighter display-1">Tribe</h1>
+        <p class="fst-italic fw-light ps-3 fs-4">a collaborative project management framework</p>
+
+        <div id="scroll-hint" class="animate__animated animate__shakeY animate__infinite animate__slowest opacity-25">
+          <FaIcon @icon="chevrons-down" @prefix="fa-light" @size="2x"/>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
-
-<!--
-{{@model.schema.headmeta_title}}
-This transparent pixel can initiate javascript onload function
-<img src="/assets/img/pixel-onload.png" alt="pixel-loader" {{on "load" this.loadSomething}} class="d-none">
--->
-
-{{outlet}}
+</main>
