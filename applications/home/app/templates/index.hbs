@@ -1,16 +1,85 @@
 {{page-title "Index"}}
 
-<main>
-  <div class="container">
-    <div class="vh-100 row align-items-center position-relative">
+<main class="bg-white">
+  <section class="container position-relative">
+    <div class="min-vh-100 row align-items-center">
       <div class="col">
-        <h1 class="fw-lighter display-1">Tribe</h1>
+        <div class="d-flex align-items-baseline">
+          <h1 class="fw-lighter display-1">Tribe</h1>
+          <a href="https://packagist.org/packages/tribe/tribe#v3.0.3" target="_blank" class="ms-2 fst-italic" rel="noopener noreferrer">v3.0.3</a>
+        </div>
         <p class="fst-italic fw-light ps-3 fs-4">a collaborative project management framework</p>
 
-        <div id="scroll-hint" class="animate__animated animate__shakeY animate__infinite animate__slowest opacity-25">
-          <FaIcon @icon="chevrons-down" @prefix="fa-light" @size="2x"/>
+        <div class="border border-dark d-inline-block rounded text-light bg-dark px-2 ms-3 mt-2">
+          <p class="mb-0 font-monospace">$ composer create-project tribe/tribe</p>
+        </div>
+
+        <div class="row col-lg-9 mt-5 ps-3 g-3">
+          <div class="col pe-lg-4">
+            <h2 class="h4 fw-normal">Collaborative</h2>
+            <p>Our unique approach with <strong>"types.json"</strong> makes it easy and quick to change directions in an agile work environment, making collaborations easier with non-tech people and design teams.</p>
+          </div>
+
+          <div class="col pe-lg-4">
+            <h2 class="h4 fw-normal">Dashboard</h2>
+            <p>Out of the box support for Admin dashboard which automatically shapes itself according to the underlying data structure</p>
+          </div>
+
+          <div class="col pe-lg-4">
+            <h2 class="h4 fw-normal">APIs</h2>
+            <p>Following <a href="https://jsonapi.org/">JSON:API</a> specification, data can be easily exposed via APIs. Secured by <a href="https://oauth.net/2/">OAuth 2</a> you can always be at peace with the security of the app and its data.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <div id="scroll-hint"
+      class="d-inline-block animate__animated animate__shakeY animate__infinite animate__slowest opacity-25">
+      <FaIcon @icon="chevrons-down" @prefix="fa-light" @size="2x"/>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="row align-items-center justify-content-center flex-lg-column min-vh-100">
+      <h1 class="text-center">Built on open source technologies</h1>
+
+      <div class="row bg-dark rounded-4 py-3 px-1 mt-5 text-light align-items-center">
+        <div class="col-lg-7">
+          <img src="/assets/img/github.png" alt="..." class="img-fluid rounded rounded-4">
+        </div>
+
+        <div class="col-lg-5">
+          <p class="display-2">Open source friendly license. Built for the community, by the communnity.</p>
+
+          <div class="d-flex align-items-center">
+            <img src="/assets/img/gpl-v3.png" alt="..." class="img-fluid me-lg-3">
+
+            <a href="https://github.com/tribe-framework/tribe" target="_blank" class="d-inline-flex align-items-center btn btn-dark py-2 px-3 rounded rounded-3 border border-secondary" rel="noopener noreferrer"><FaIcon @icon="github" @prefix="fa-brands" @size="2x"/><span class="ms-2">GitHub</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mt-4">
+    <div class="row bg-dark rounded-4 text-light px-0 py-2 align-items-center">
+      <div class="col-lg-7 mx-auto mt-3 ps-lg-4">
+        <h1 class="display-4">Join our Discord for support and questions</h1>
+
+        <a href="https://discord.gg/CvwEkfGj" target="_blank" rel="noopener noreferrer" class="btn rounded-3 btn-dark d-inline-flex align-items-center border-secondary mt-2"><FaIcon @icon="discord" @prefix="fa-brands" @size="2x"/><span class="ms-2">Join Discord</span></a>
+      </div>
+
+      <div class="col-lg-5 mx-auto">
+        <img src="/assets/img/discord.jpeg" alt="..." class="img-fluid rounded rounded-4">
+      </div>
+    </div>
+  </section>
 </main>
+
+<footer class="bg-dark text-secondary mt-5">
+  <div class="container">
+    <div class="row py-2">
+      <p class="mb-0 text-center">Source available <a href="https://github.com/tribe-framework/tribe-framework.org" class="text-secondary" target="_blank" rel="noopener noreferrer">here</a>. Licensed under <a href="https://github.com/tribe-framework/tribe-framework.org/blob/master/LICENSE.md" class="text-secondary" target="_blank" rel="noopener noreferrer">GPLv3</a>.</p>
+    </div>
+  </div>
+</footer>

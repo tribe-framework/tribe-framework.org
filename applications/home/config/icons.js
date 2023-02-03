@@ -10,6 +10,6 @@ module.exports = function () {
     'pro-solid-svg-icons': [
       'table-list',
     ],
-    'free-brands-svg-icons': ['facebook', 'twitter', 'whatsapp', 'instagram'],
+    'free-brands-svg-icons': ['facebook', 'twitter', 'whatsapp', 'instagram', 'github', 'discord'],
   };
 };
