@@ -1,0 +1,33 @@
+<div class="fw-bold fst-italic w-100 text-center mb-2">Total {{@type.plural}}: {{@totalObjects}}</div>
+<nav class="px-0">
+  <ul class="pagination px-0 border border-1 border-dark justify-content-center" style="overflow-x:scroll">
+    <li class="page-item {{if (not (gt (get @currentPageNumber @type.slug) 1)) "disabled"}}">
+      {{#if (gt (get @currentPageNumber @type.slug) 1)}}
+        <div class="page-link bg-secondary border-1 border-top-0 border-bottom-0 border-dark {{if (not (gt (get @currentPageNumber @type.slug) 1)) "text-light" "text-dark"}}" {{on 'click' (fn @changePageNumber (dec (get @currentPageNumber @type.slug)))}}><FaIcon @icon="chevrons-left" /></div>
+      {{else}}
+        <div class="page-link bg-secondary border-1 border-top-0 border-bottom-0 border-dark {{if (not (gt (get @currentPageNumber @type.slug) 1)) "text-light" "text-dark"}}"><FaIcon @icon="chevrons-left" /></div>
+      {{/if}}
+    </li>
+
+    {{#each @pageLinks as |pageNumber|}}
+      {{#if (or 
+          (eq pageNumber (get @currentPageNumber @type.slug))
+          (eq pageNumber 1)
+          (eq pageNumber 2)
+          (lt pageNumber (add 3 (get @currentPageNumber @type.slug)))
+      )}}
+      	<li class="page-item">
+      		<div class="page-link border-1 border-top-0 border-bottom-0 border-dark {{if (eq (get @currentPageNumber @type.slug) pageNumber) "text-light bg-dark" "text-dark bg-secondary"}}" {{on 'click' (fn @changePageNumber pageNumber)}}>{{pageNumber}}</div>
+      	</li>
+      {{/if}}
+    {{/each}}
+
+    <li class="page-item {{if (gte (get @currentPageNumber @type.slug) @numberOfPages) "disabled"}}">
+      {{#if (gte (get @currentPageNumber @type.slug) @numberOfPages)}}
+        <div class="page-link bg-secondary border-1 border-top-0 border-bottom-0 border-dark {{if (gte (get @currentPageNumber @type.slug) @numberOfPages) "text-light" "text-dark"}}"><FaIcon @icon="chevrons-right" /></div>
+      {{else}}
+        <div class="page-link bg-secondary border-1 border-top-0 border-bottom-0 border-dark {{if (gte (get @currentPageNumber @type.slug) @numberOfPages) "text-light" "text-dark"}}" {{on 'click' (fn @changePageNumber (inc (get @currentPageNumber @type.slug)))}}><FaIcon @icon="chevrons-right" /></div>
+      {{/if}}
+    </li>
+  </ul>
+</nav>

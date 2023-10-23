@@ -15,11 +15,9 @@ if ($_ENV['ALLOW_CROSS_ORIGIN'] === 'true') {
 	if ($_ENV['ENV'] == 'prod') {
 	    $allowed_origins = [
 	        'http://localhost:4200',
-	        /*
-	        'https://domain.tld',
-	        'https://tribe.domain.tld',
-	        'https://junction.domain.tld',
-	        */
+	        'https://tribe-framework.org',
+	        'https://tribe.tribe-framework.org',
+	        'https://junction.tribe-framework.org',
 	    ];
 
 	    if (in_array($_SERVER['HTTP_ORIGIN'], $allowed_origins)) {

@@ -1,0 +1,28 @@
+<nav class="fs-2 border-bottom border-danger border-5 fs-light navbar navbar-expand bg-dark sticky-top py-0">
+  <div class="container-fluid px-0" style="overflow-x:scroll">
+    <button id="main-menu-toggler" {{on 'click' this.toggleBarsIcon}} class="shadow-none navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="bars-staggered text-white fs-1"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto text-end mb-lg-0 d-flex align-items-lg-center pe-5">
+        <HeaderNavItem>
+          <img src="/favicon.png" height="36" width="36" class="rounded-2 mx-2" />
+        </HeaderNavItem>
+
+        <HeaderNavItem @collapseMenu={{this.collapseMenu}} @icon="gauge-high" @navtitle="Dashboard" @navroute="index" />
+
+        <HeaderNavItem @collapseMenu={{this.collapseMenu}} @icon="list-tree" @navtitle="Types" @navroute="types" />
+
+      </ul>
+    </div>
+    <div class="d-flex align-items-center justify-content-end">
+      <div class="fs-smaller fs-4 navbar-brand text-white"
+        data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="Logout" {{on 'click' this.auth.logout}}>
+        <FaIcon @icon="arrow-right-from-bracket" @prefix="fa-light" />
+      </div>
+    </div>
+  </div>
+</nav>
+
+{{yield}}

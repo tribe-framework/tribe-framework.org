@@ -1,0 +1,31 @@
+<tr id="row-{{@object.id}}" class="border-dark {{if (this.inArray @object.id (get @selectedRowIDs @type.slug)) "bg-info"}}">
+  <th class="border-end border-start border-1 border-dark" scope="row" {{on 'click' this.toggleSelection}}>{{@object.id}}</th>
+
+  {{#each @type.modules as |module|}}
+    {{#if module.list_field}}
+
+      {{#if module.input_primary}}
+
+        <td class="position-relative border-end border-1 border-dark" {{on 'mouseover' this.showOptions}} {{on 'mouseout' this.hideOptions}}>
+          <div class="text-ellipsis" {{on 'touchend' this.toggleOptions}}>{{get @object.modules module.input_slug}}</div>
+
+          <Hooks::RowOptions @object={{@object}} @type={{@type}} @module={{module}} />
+
+          <Types::ListTable::RowOptions @object={{@object}} @type={{@type}} @module={{module}} />
+          
+        </td>
+
+      {{else}}
+
+        <td class="position-relative border-end border-1 border-dark" {{on 'mouseover' this.showOptions}} {{on 'mouseout' this.hideOptions}}>
+          <div class="text-ellipsis" {{on 'touchend' this.toggleOptions}}>{{get @object.modules module.input_slug}}</div> 
+        </td>
+
+      {{/if}}
+
+    {{/if}}
+  {{/each}}
+</tr>
+
+<Types::CopyObjectModal @object={{@object}} @type={{@type}} @loadTypeObjects={{@loadTypeObjects}} />
+<Types::EditObjectModal @multiEdit={{false}} @webapp={{@webapp}} @type={{@type}} @object={{@object}} @loadTypeObjects={{@loadTypeObjects}} @selectedRowIDs={{@selectedRowIDs}} @emptySelectedRowsInType={{@emptySelectedRowsInType}} />

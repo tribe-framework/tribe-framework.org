@@ -1,0 +1,40 @@
+<div class="card px-0 border-dark">
+  <div class="card-header border-0 text-uppercase">
+    <i class="fa-light fa-chart-mixed"></i>
+    <span class="ms-1">Summary</span>
+  </div>
+  <div class="card-body">
+  	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">Types</th>
+	      <th scope="col">#</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+
+
+				{{#if @types.webapp.interface_urls.junction.types}}
+					{{#each @types.webapp.interface_urls.junction.types as |type_slug|}}
+					    <tr>
+					      <td>{{get (get @types type_slug) "plural"}}</td>
+					      <td>{{get (get @types type_slug) "total_objects"}}</td>
+					    </tr>
+					{{/each}}
+				{{else}}
+
+			  	{{#each-in @types as |key type|}}
+			  		{{#if (and (not-eq key "webapp") (not-eq type.hidden true))}}
+					    <tr>
+					      <td>{{get (get @types key) "plural"}}</td>
+					      <td>{{type.total_objects}}</td>
+					    </tr>
+						{{/if}}
+			    {{/each-in}}
+
+			  {{/if}}
+	  </tbody>
+	</table>
+  </div>
+</div>
+{{yield}}
