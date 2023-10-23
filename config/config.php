@@ -12,22 +12,30 @@ date_default_timezone_set($_ENV['DEFAULT_TIMEZONE']);
 // set cors headers in PHP server
 if ($_ENV['ALLOW_CROSS_ORIGIN'] === 'true') {
 
-	//in dev environment, allowing cross origin * for localhost
-	if ($_ENV['ENV'] == 'dev') {
+	if ($_ENV['ENV'] == 'prod') {
+	    $allowed_origins = [
+	        'http://localhost:4200',
+	        /*
+	        'https://domain.tld',
+	        'https://tribe.domain.tld',
+	        'https://junction.domain.tld',
+	        */
+	    ];
+
+	    if (in_array($_SERVER['HTTP_ORIGIN'], $allowed_origins)) {
+	        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+	    }
+
+	    header("Access-Control-Allow-Headers: *");
+	    header("Access-Control-Allow-Methods: *");
+	}
+
+	//in dev environment, allowing cross origin *
+	else {
 		header("Access-Control-Allow-Origin: *");
 		header("Access-Control-Allow-Headers: *");
+		header("Access-Control-Allow-Methods: *");
 	}
-
-	//in prod environment, if cross origin access is required, uncomment the following and modify cross_origin_url
-	/*
-	if ($_ENV['ENV'] == 'prod') {
-		$cross_origin_url = 'domain.tld';
-		header("Access-Control-Allow-Origin: $cross_origin_url");
-		header("Access-Control-Allow-Headers: $cross_origin_url");
-	}
-	*/
-
-	unset($cross_origin_url);
 }
 
 define('TRIBE_ROOT', dirname(__DIR__, 1));

@@ -1,11 +1,15 @@
 <?php
 require __DIR__ . '/_init.php';
 $uploads = new \Tribe\Uploads;
+$api = new \Tribe\API;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+	$_POST = $api->requestBody;
 
 /* New code that handles file uploading */
-if ($_FILES['file']) {
+if (($_FILES ?? false) || ($_POST ?? false)) {
 	header('Content-type: application/json; charset=utf-8');
-	echo json_encode($uploads->handleUpload($_FILES));
+	echo json_encode($uploads->handleUpload(($_FILES ?? []), ($_POST ?? []), ($_GET ?? [])));
 }
 
 /* Old code that handles S3 CDN redirection for uploads folder */

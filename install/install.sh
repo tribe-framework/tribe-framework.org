@@ -9,19 +9,18 @@ green=`tput setaf 2`;
 reset=`tput sgr0`;
 
 #user input for directory details
-read -p "Website Domain: " websitedomain;
 read -p "MySQL Root Username: " mysqluser;
 echo "MySQL Root Password:";
 read -s mysqlpass;
-read -p "Website Database Name: " mysqlwuser;
-read -p "Website Admin Email: " adminemail;
-echo "Website Password:";
+read -p "Tribe Domain: " tribedomain;
+read -p "Tribe Certbot Email Address: " adminemail;
+read -p "Tribe MySQL Database Name: " mysqlwuser;
+echo "Tribe MySQL Database Password:";
 read -s mysqlwpass;
-read -p "Include SSL for www extension [y/n]: " wwwssl;
 
 #ARE YOU SURE prompt
 #yes, no or cancel
-read -rp "You're about to create a folder, NginX config and MySQL database for $websitedomain at location $installpath/$websitedomain. Are you sure you wish to proceed [y/n/c]: ";
+read -rp "You're about to create a folder, NginX config and MySQL database for $tribedomain at location $installpath/$tribedomain. Are you sure you wish to proceed [y/n/c]: ";
 
 #choosing cancelled in ARE YOU SURE prompt
 [[ ${REPLY,,} =~ ^(c|cancel|C|CANCEL|Cancel)$ ]] && {
@@ -32,34 +31,33 @@ read -rp "You're about to create a folder, NginX config and MySQL database for $
 #choosing yes in ARE YOU SURE prompt
 if [[ ${REPLY,,} =~ ^(y|yes|Y|YES|Yes)$ ]]; then
 
-	if [ -d "$installpath/$websitedomain/" ];
+	if [ -d "$installpath/$tribedomain/" ];
 	then
-		echo "${red}ERROR:${reset} A directory already exists on the path $installpath/$websitedomain.";
+		echo "${red}ERROR:${reset} A directory already exists on the path $installpath/$tribedomain.";
 	else
 	
-		if [ -n "$websitedomain" ] && [ -n "$mysqluser" ] && [ -n "$mysqlpass" ] && [ -n "$mysqlwuser" ] && [ -n "$adminemail" ] && [ -n "$mysqlwpass" ]
+		if [ -n "$tribedomain" ] && [ -n "$mysqluser" ] && [ -n "$mysqlpass" ] && [ -n "$mysqlwuser" ] && [ -n "$adminemail" ] && [ -n "$mysqlwpass" ]
 		then
 			#get tribe from github
-			sudo git clone https://github.com/wil-ldf-ire/tribe.git $installpath/$websitedomain;
+			git clone https://github.com/tribe-framework/tribe.git $installpath/$tribedomain;
 
 			#remove .git folder
-			cd $installpath/$websitedomain;
-			sudo rm -rf .git;
+			cd $installpath/$tribedomain;
+			rm -rf .git;
 
-			#prepare website.sh for execution
-			#replace placeholders with user inputs in website.sh file
-			sudo sed -i "s/xyz.com/$websitedomain/g" $installpath/$websitedomain/install/website.sh;
-			sudo sed -i "s/ipv4_address/$ipv4address/g" $installpath/$websitedomain/install/website.sh;
-			sudo sed -i "s/mysql_root_user/$mysqluser/g" $installpath/$websitedomain/install/website.sh;
-			sudo sed -i "s/mysql_root_pass/$mysqlpass/g" $installpath/$websitedomain/install/website.sh;
-			sudo sed -i "s/admin_email/$adminemail/g" $installpath/$websitedomain/install/website.sh;
-			sudo sed -i "s/install_path/$installpath1/g" $installpath/$websitedomain/install/website.sh;
-			sudo sed -i "s/mysql_w_user/$mysqlwuser/g" $installpath/$websitedomain/install/website.sh;
-			sudo sed -i "s/mysql_w_pass/$mysqlwpass/g" $installpath/$websitedomain/install/website.sh;
-			sudo sed -i "s/www_ssl/$wwwssl/g" $installpath/$websitedomain/install/website.sh;
+			#prepare tribe.sh for execution
+			#replace placeholders with user inputs in tribe.sh file
+			sed -i "s/xyz.com/$tribedomain/g" $installpath/$tribedomain/install/tribe.sh;
+			sed -i "s/ipv4_address/$ipv4address/g" $installpath/$tribedomain/install/tribe.sh;
+			sed -i "s/mysql_root_user/$mysqluser/g" $installpath/$tribedomain/install/tribe.sh;
+			sed -i "s/mysql_root_pass/$mysqlpass/g" $installpath/$tribedomain/install/tribe.sh;
+			sed -i "s/admin_email/$adminemail/g" $installpath/$tribedomain/install/tribe.sh;
+			sed -i "s/install_path/$installpath1/g" $installpath/$tribedomain/install/tribe.sh;
+			sed -i "s/mysql_w_user/$mysqlwuser/g" $installpath/$tribedomain/install/tribe.sh;
+			sed -i "s/mysql_w_pass/$mysqlwpass/g" $installpath/$tribedomain/install/tribe.sh;
 
-			#run website.sh
-			sudo bash $installpath/$websitedomain/install/website.sh;
+			#run tribe.sh
+			bash $installpath/$tribedomain/install/tribe.sh;
 
 			#display success message
 			echo -e "\r\n### -----------------\r\n";
