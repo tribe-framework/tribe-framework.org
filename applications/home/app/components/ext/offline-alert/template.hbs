@@ -1,0 +1,17 @@
+{{!-- Modal --}}
+<div class="modal fade" id="offlineAlert" tabindex="-1" aria-labelledby="offlineAlertLabel" aria-hidden="true" {{did-insert this.initOfflineDetector}}>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-dark">
+      	<div class="d-flex flex-column w-100 text-center align-items-center justify-content-center">
+      		<FaIcon @icon="wifi-slash" @size="5x" />
+      		<div class="fs-3 fw-bold my-3">Please check your internet connection.</div>
+		</div>
+        {{yield}}
+      </div>
+      <div class="modal-footer text-center border-0 pt-2">
+        <button type="button" class="btn mx-auto btn-primary text-white fw-bold" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

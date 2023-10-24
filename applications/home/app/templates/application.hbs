@@ -1,6 +1,5 @@
 {{page-title "Home"}}
 {{outlet}}
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3" {{did-insert this.initNotifications}}>
-	<Notify::Notifications @notifications={{this.notifications}} />
-</div>
+<Ext::Notify::ToastStack @positionClass="top-0 end-0 p-3" @notificationClass="" />
+<Ext::OfflineAlert />

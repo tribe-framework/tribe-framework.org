@@ -1,0 +1,7 @@
+<div class="toast-container position-fixed {{@positionClass}}" {{did-insert this.initNotifications}}>
+
+	{{#each this.notifications as |notification|}}
+		<Ext::Notify::Notification @notification={{notification}} @class={{@notificationClass}} />
+	{{/each}}
+
+</div>

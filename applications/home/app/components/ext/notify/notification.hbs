@@ -1,0 +1,11 @@
+<div id="{{@notification.uniqid}}" class="toast {{@class}}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" {{did-insert this.notify}}>
+	<div class="toast-header">
+	  <Ext::Avatar @size="24" />
+	  <strong class="me-auto ms-2">Bootstrap</strong>
+	  <small>just now</small>
+	  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+	<div class="toast-body">
+	  {{@notification.message}}
+	</div>
+</div>

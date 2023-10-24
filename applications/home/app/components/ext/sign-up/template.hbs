@@ -1,0 +1,49 @@
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog mt-7">
+    <div class="modal-content modal-bg rounded-5 px-0">
+      <div class="modal-body rounded-5 px-0">
+      	<div id="live-toast-signup" class="toast text-bg-primary mx-auto w-100 m-0 w-100 rounded-5 align-items-center position-absolute top-0 animate__animated animate__flipInX" role="alert" aria-live="assertive" aria-atomic="true">
+		  <div class="d-flex">
+		    <div class="toast-body">{{{this.toastMessage}}}</div>
+		    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+		  </div>
+		</div>
+
+		{{#if this.displayOTPBox}}
+			<div class="container py-5 px-3 px-lg-5">
+				<div class="text-center d-flex fw-bold align-items-center fs-3 justify-content-center mb-3  text-uppercase"><FaIcon @icon="lock" /><span class="ms-2">Sign up</span></div>
+			  <div class="mb-3">
+			    <label for="inputOTP" class="form-label text-uppercase fw-bold small mb-0 ">Enter OTP</label>
+			    <Input {{on-key "Enter" this.checkOTP}} @type="number" id="inputOTP" @value={{this.inputOTP}} placeholder="6-digit OTP" class="form-control border-primary border border-2" />
+			  </div>
+			  <button {{on 'click' this.checkOTP}} type="button" class="btn btn-primary btn-lg w-100 d-block fw-bold ">Check OTP</button>
+			</div>
+		{{else}}
+			<div class="container py-5 px-3 px-lg-5">
+				<div class="text-center d-flex fw-bold align-items-center fs-3 justify-content-center mb-3  text-uppercase"><FaIcon @icon="lock" /><span class="ms-2">Sign up</span></div>
+			  <div class="mb-3">
+			    <label class="form-label text-uppercase fw-bold small mb-0 ">Name *</label>
+			    <Input {{on-key "Enter" this.getOTP}} @type="text" @value={{this.user.name}} placeholder="Your full name" class="form-control border-primary border border-2" />
+			  </div>
+			  <div class="mb-3">
+			    <label class="form-label text-uppercase fw-bold small mb-0 ">Email address *</label>
+			    <Input {{on-key "Enter" this.getOTP}} @type="email" @value={{this.user.email}} placeholder="email@address.com" class="form-control border-primary border border-2" />
+			  </div>
+			  <div class="mb-3">
+			    <label class="form-label text-uppercase fw-bold small mb-0 ">Mobile number (optional)</label>
+			    <Input {{on-key "Enter" this.getOTP}} @type="tel" @value={{this.user.mobile}} placeholder="98xxxxxxxx" class="form-control border-primary border border-2" />
+			  </div>
+			  <div class="mb-3 form-check">
+			    <Input @type="checkbox" @value="1" @checked={{this.user.agreeToTerms}} class="form-check-input" id="exampleCheck1" />
+			    <label class="form-check-label " for="exampleCheck1">Accept our <a class="" href="#">terms and conditions</a></label>
+			  </div>
+			  <button {{on 'click' this.getOTP}} type="button" class="btn btn-primary btn-lg w-100 d-block fw-bold ">Get Email OTP</button>
+
+			  <div class="text-center mt-3 ">Already have an account? <a data-bs-toggle="modal" href="#loginModal">Log in.</a></div>
+			</div>
+		{{/if}}
+
+      </div>
+    </div>
+  </div>
+</div>

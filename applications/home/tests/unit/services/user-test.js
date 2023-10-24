@@ -1,12 +1,12 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'home/tests/helpers';
 
-module('Unit | Controller | application', function (hooks) {
+module('Unit | Service | user', function (hooks) {
   setupTest(hooks);
 
   // TODO: Replace this with your real tests.
   test('it exists', function (assert) {
-    let controller = this.owner.lookup('controller:application');
-    assert.ok(controller);
+    let service = this.owner.lookup('service:user');
+    assert.ok(service);
   });
 });
