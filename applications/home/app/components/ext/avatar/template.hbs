@@ -1,9 +1,9 @@
-<div class="d-none" {{did-insert this.getUser}}></div>
 {{#if @overrideImage}}
   <div class="d-block border border-2 border-primary rounded-circle avatar-img" style="width:{{@size}}px; height:{{@size}}px; background-image:url({{@overrideImage}})" width="{{@size}}" height="{{@size}}"></div>
-{{else if this.currentUser.modules.profile_photo_url}}
-  <div class="d-block border border-2 border-primary rounded-circle avatar-img" style="width:{{@size}}px; height:{{@size}}px; background-image:url({{this.currentUser.modules.profile_photo_url}})" width="{{@size}}" height="{{@size}}"></div>
+{{else if @user.modules.profile_photo_url}}
+  <div class="d-block border border-2 border-primary rounded-circle avatar-img" style="width:{{@size}}px; height:{{@size}}px; background-image:url({{@user.modules.profile_photo_url}})" width="{{@size}}" height="{{@size}}"></div>
+{{else if @object.modules.cover_image_url}}
+  <div class="d-block border border-2 border-primary rounded-circle avatar-img" style="width:{{@size}}px; height:{{@size}}px; background-image:url({{@object.modules.cover_image_url}})" width="{{@size}}" height="{{@size}}"></div>
 {{else}}
   <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="{{@size}}" xmlns="http://www.w3.org/2000/svg" height="{{@size}}" id="screenshot-c8e332b2-11e8-802b-8003-1391eaaa4d4b" viewBox="0 0 {{@size}} {{@size}}" style="-webkit-print-color-adjust: exact;" fill="none" version="1.1" class="rounded-circle"><g id="shape-c8e332b2-11e8-802b-8003-1391eaaa4d4b" rx="0" ry="0"><g id="shape-c8e332b2-11e8-802b-8003-1391eaaa4d4c"><g class="fills" id="fills-c8e332b2-11e8-802b-8003-1391eaaa4d4c"><rect rx="0" ry="0" x="0" y="0" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" width="{{@size}}" height="{{@size}}" style="fill: {{this.outerColor}}; fill-opacity: 1;"/></g></g><g id="shape-c8e332b2-11e8-802b-8003-13924966ea2d"><g class="fills" id="fills-c8e332b2-11e8-802b-8003-13924966ea2d"><ellipse rx="25%" ry="25%" cx="50%" cy="50%" transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)" style="fill: {{this.innerColor}}; fill-opacity: 1;"/></g></g></g></svg>
-  <div {{did-insert this.userColors}} class="d-none"></div>
 {{/if}}

@@ -1,7 +1,9 @@
-<div class="toast-container position-fixed {{@positionClass}}" {{did-insert this.initNotifications}}>
+{{#if this.user.isLoggedIn}}
+	<div class="toast-container position-fixed {{@positionClass}}" {{did-insert this.initNotifications}}>
 
-	{{#each this.notifications as |notification|}}
-		<Ext::Notify::Notification @notification={{notification}} @class={{@notificationClass}} />
-	{{/each}}
+		{{#each this.notifications as |notification|}}
+			<Ext::Notify::Toast @notification={{notification}} @class={{@notificationClass}} />
+		{{/each}}
 
-</div>
+	</div>
+{{/if}}

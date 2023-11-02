@@ -8,8 +8,7 @@
             "home": { 
                 "title": "Home", 
                 "slug": "home", 
-                "url": "https://tribe-framework.org",
-                "types": ["section", "page"]
+                "url": "https://tribe-framework.org"
             },
             "junction": { 
                 "title": "Junction", 
@@ -97,6 +96,26 @@
                 "list_field": true,
                 "list_searchable": true,
                 "list_sortable": true
+            },
+            {
+                "input_slug": "pusher_event",
+                "input_placeholder": "Pusher events subscribed to",
+                "input_type": "select",
+                "var_type": "array",
+                "input_unique": false,
+                "input_multiple": true
+            },
+            {
+                "input_slug": "unread_message_counter",
+                "input_placeholder": "Unread message counter",
+                "input_type": "number",
+                "var_type": "int"
+            },
+            {
+                "input_slug": "missed_call_counter",
+                "input_placeholder": "Missed call counter",
+                "input_type": "number",
+                "var_type": "int"
             }
         ]
     },
@@ -177,7 +196,7 @@
                 "list_sort": true
             },
             {
-                "input_slug": "cover_media",
+                "input_slug": "cover_image_url",
                 "input_placeholder": "Enter content cover URL",
                 "input_type": "url",
                 "var_type": "string",
@@ -234,6 +253,107 @@
                 "list_field": true,
                 "list_searchable": true,
                 "list_sortable": true
+            }
+        ]
+    },
+    "pusher_message": {
+        "name": "pusher message",
+        "slug": "pusher_message",
+        "plural": "pusher messages",
+        "readonly": true,
+        "sendable": false,
+        "editable": false,
+        "description": "List of pusher messages.",
+        "modules": [
+            {
+                "input_slug": "title",
+                "input_primary": true,
+                "input_type": "text",
+                "var_type": "string",
+                "input_placeholder": "Enter pusher message",
+                "input_unique": false,
+                "list_field": true,
+                "list_searchable": true,
+                "list_sortable": true
+            },
+            {
+                "input_slug": "channel",
+                "input_type": "text",
+                "var_type": "string"
+            },
+            {
+                "input_slug": "pusher_event",
+                "input_type": "select",
+                "var_type": "string"
+            },
+            {
+                "input_slug": "sender_id",
+                "input_type": "number",
+                "var_type": "int"
+            },
+            {
+                "input_slug": "sender_type",
+                "input_type": "text",
+                "var_type": "string"
+            },
+            {
+                "input_slug": "action_route",
+                "input_type": "text",
+                "var_type": "string"
+            },
+            {
+                "input_slug": "action_message",
+                "input_type": "text",
+                "var_type": "string"
+            },
+            {
+                "input_slug": "uniqid",
+                "input_type": "text",
+                "var_type": "string"
+            }
+        ]
+    },
+    "pusher_event": {
+        "name": "pusher event",
+        "slug": "pusher_event",
+        "plural": "pusher events",
+        "readonly": false,
+        "sendable": false,
+        "editable": true,
+        "description": "List of pusher events.",
+        "modules": [
+            {
+                "input_slug": "title",
+                "input_primary": true,
+                "input_type": "text",
+                "var_type": "string",
+                "input_placeholder": "Enter pusher event title",
+                "input_unique": false,
+                "list_field": true,
+                "list_searchable": true,
+                "list_sortable": true
+            },
+            {
+                "input_slug": "history_type",
+                "input_placeholder": "Select event type",
+                "input_type": "select",
+                "input_options": [
+                    { "slug": "forget", "title": "Send and forget" },
+                    { "slug": "forget_and_keep_message_count", "title": "Forget and keep message count" },
+                    { "slug": "forget_and_keep_call_count", "title": "Forget and keep call count" },
+                    { "slug": "saved_message", "title": "Remember message" },
+                    { "slug": "saved_message_and_action", "title": "Remember message and action taken" },
+                    { "slug": "call_record", "title": "Add to call data" }
+                ],
+                "var_type": "string",
+                "list_field": true,
+                "list_searchable": true,
+                "list_sortable": true
+            },
+            {
+                "input_slug": "metadata",
+                "input_type": "hidden",
+                "var_type": "json"
             }
         ]
     }

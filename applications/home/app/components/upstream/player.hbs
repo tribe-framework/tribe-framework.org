@@ -1,0 +1,23 @@
+<video-js poster={{@posterURL}} class="vjs-theme-city video-player {{@class}}" id={{@id}} style={{@style}} playsinline crossorigin autoplay>
+	{{yield}}
+</video-js>
+
+{{#if @controls}}
+	<div class="position-absolute text-lowercase p-2 d-flex top-0 end-0 d-flex align-items-start justify-content-end text-end w-100" style="z-index:1">
+
+	  	{{#if this.playing}}
+	    	<div class="text-white small fw-bolder mx-1" {{on 'click' this.playPause}}>&lt;pause&gt;</div>
+	    {{else}}
+	    	<div class="text-white small fw-bolder mx-1" {{on 'click' this.playPause}}>&lt;play&gt;</div>
+	    {{/if}}
+
+	    {{#if this.muted}}
+		    <div class="text-white small fw-bolder mx-1" {{on 'click' this.muteUnmute}}>&lt;unmute&gt;</div>
+		{{else}}
+			<div class="text-white small fw-bolder mx-1" {{on 'click' this.muteUnmute}}>&lt;mute&gt;</div>
+		{{/if}}
+
+	  	<div class="text-white small fw-bolder mx-1" {{on 'click' this.restart}}>&lt;restart&gt;</div>
+
+	</div>
+{{/if}}

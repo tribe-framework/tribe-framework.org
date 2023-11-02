@@ -1,0 +1,31 @@
+{{page-title "Live"}}
+
+<main class="form-signin bg-primary vh-100 text-center px-3 pt-5">
+  <form class="col-lg-4 col-md-8 col-12 mx-auto">
+    <Input @type="text" placeholder="Enter meet ID or press the button below" @value={{this.roomName}} class="form-control" />
+    {{#if this.isConnected}}
+    	<div class="w-100 mt-4"><iframe src="https://giphy.com/embed/XbayqwiljaW6W6SsZC" width="100" height="40" frameBorder="0" class="giphy-embed"></iframe></div>
+	    <button type="button" class="btn btn-light mt-3" {{on 'click' this.copyURLToClipboard}}>Copy URL to Share</button>
+	    <button type="button" class="btn btn-light mt-3" {{on 'click' this.shareScreen}}>Share Screen</button>
+	    <button type="button" class="btn btn-danger mt-3" {{on 'click' this.disconnect}}>Disconnect</button>
+	{{else}}
+		<button type="button" class="btn btn-light mt-3" {{on 'click' this.connect}}>{{{this.btnText}}}</button>
+	{{/if}}
+  </form>
+
+  <div class="row">
+	{{#if this.isConnected}}
+		<Upstream::Participant @id={{this.room.localParticipant.sid}} @videoTrack={{this.getVideoTrack this.room.localParticipant.sid}} @class="w-100 rounded-2" @trackType="video" />
+	{{/if}}
+
+	{{#if this.myScreenShared}}
+		<Upstream::Participant @id={{this.room.localParticipant.sid}} @screenTrack={{this.getScreenTrack this.room.localParticipant.sid}} @class="w-100 rounded-2" @trackType="screen" />
+	{{/if}}
+
+	{{#each this.participants as |participant|}}
+		<Upstream::Participant @id={{participant.sid}} @videoTrack={{this.getVideoTrack participant.sid}} @class="w-100 rounded-2" @trackType="video" />
+	{{/each}}
+  </div>
+</main>
+
+{{outlet}}

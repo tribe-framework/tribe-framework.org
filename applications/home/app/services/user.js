@@ -18,6 +18,24 @@ export default class UserService extends Service {
   @tracked user_id = null;
   @tracked currentUser = null;
 
+  get isLoggedIn() {
+    if (this.cookies.getCookie('tribe_user_email')) {
+      return fetch(ENV.TribeENV.API_URL + '/custom/auth/current-user.php', {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: this.currentUser.modules,
+        }),
+      }).then((response) => {
+        if (this.cookies.getCookie('tribe_user_email')) return true;
+        else return false;
+      });
+    } else return false;
+  }
+
   @action
   copyUserIDToClipboard() {
     navigator.clipboard.writeText('#' + this.user_id);
@@ -26,7 +44,19 @@ export default class UserService extends Service {
   @action
   logout() {
     this.cookies.eraseCookie('tribe_user_email');
-    window.location.href = '/';
+
+    fetch(ENV.TribeENV.API_URL + '/custom/auth/logout.php', {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: this.currentUser.modules,
+      }),
+    }).then((response) => {
+      window.location = '/';
+    });
   }
 
   @action

@@ -1,1 +1,15 @@
-{{yield}}
+<div id="{{@notification.uniqid}}" class="toast {{@class}}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" {{did-insert this.notify}}>
+	<div class="toast-header">
+	  <Ext::Avatar @size="24" @user={{@notification.user}} @object={{@notification.object}} />
+	  <strong class="me-auto ms-2">{{@notification.user.modules.name}}</strong>
+	  <small>just now</small>
+	  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+	<div class="toast-body">
+	  <div class="d-flex w-100 justify-content-start">{{@notification.message}}</div>
+
+	  {{#if (and @notification.action_route @notification.action_message)}}
+	  	<div class="small d-flex w-100 justify-content-end mt-1"><LinkTo @route={{@notification.action_route}} class="btn btn-sm btn-outline-dark py-1">{{@notification.action_message}}</LinkTo></div>
+	  {{/if}}
+	</div>
+</div>

@@ -42,6 +42,7 @@
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@popperjs/core": "^2.11.8",
+    "@videojs/http-streaming": "^3.7.0",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.2",
     "broccoli-asset-rev": "^3.0.0",
@@ -83,6 +84,7 @@
     "ember-toggle": "^9.0.3",
     "ember-tribe": "^1.2.12",
     "ember-truth-helpers": "^4.0.3",
+    "ember-upstream": "^1.0.0",
     "ember-web-app": "^5.0.1",
     "ember-welcome-page": "^7.0.1",
     "eslint": "^8.37.0",
@@ -103,7 +105,7 @@
     "stylelint-prettier": "^3.0.0",
     "swiper": "^10.3.1",
     "tracked-built-ins": "^3.3.0",
-    "video.js": "^8.6.0",
+    "video.js": "^8.6.1",
     "webpack": "^5.78.0"
   },
   "engines": {
@@ -111,5 +113,9 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "livekit-client": "^1.14.2",
+    "livekit-server-sdk": "^1.2.7"
   }
 }

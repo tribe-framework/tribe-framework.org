@@ -1,0 +1,15 @@
+{{page-title "Auth"}}
+
+<main class="form-signin bg-primary vh-100 text-center px-3 pt-5">
+  <form class="col-lg-5 mx-auto">
+    <a data-bs-toggle="modal" href="#signupModal" class="btn btn-light btn-leaf w-100 py-2 my-2 fw-bold">Sign up</a>
+
+    <a data-bs-toggle="modal" href="#loginModal" class="btn btn-light btn-leaf w-100 py-2 my-2 fw-bold">Login</a>
+    
+    <LinkTo @route="index" class="mt-5 mb-3 text-light fw-bold">&larr; back to home</LinkTo>
+
+    <p class="mt-5 mb-3 text-light">&copy; 2023</p>
+  </form>
+</main>
+
+{{outlet}}

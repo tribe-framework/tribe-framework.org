@@ -1,1 +1,25 @@
+{{#if this.user.isLoggedIn}}
+	{{#each @model as |user|}}
+		<div class="d-flex align-items-center flex-column my-5 pb-5 border-bottom border-1 border-dark">
+			<h5 class="fw-bold">{{user.modules.name}}</h5>
+
+			<button class="btn btn-lg btn-primary my-1" type="button" {{on 'click' (fn this.pusher.send this.user.currentUser.slug "notify" "Notification with sender details" this.user.currentUser.modules.type user.id)}}>Notification with sender details from #{{user.modules.slug}}</button>
+
+			<button class="btn btn-lg btn-primary my-1" type="button" {{on 'click' (fn this.pusher.send this.user.currentUser.slug "notify" "Notification with action route" this.user.currentUser.modules.type user.id "ext.auth" "Do something!")}}>Notification with action route #{{user.modules.slug}}</button>
+		</div>
+	{{/each}}
+
+	<div class="d-flex align-items-center justify-content-center w-100">
+		<a href="#" class="text-center fw-bold mb-3 text-dark" {{on 'click' this.user.logout}}>Logout</a>
+	</div>
+
+	<Ext::Status />
+
+{{else}}
+
+	<div class="d-flex align-items-center justify-content-center w-100">
+		<LinkTo @route="ext.auth" class="text-center fw-bold mt-5 mb-3 text-dark">Auth</LinkTo>
+	</div>
+
+{{/if}}
 {{outlet}}

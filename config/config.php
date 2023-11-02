@@ -15,6 +15,8 @@ if ($_ENV['ALLOW_CROSS_ORIGIN'] === 'true') {
 	if ($_ENV['ENV'] == 'prod') {
 	    $allowed_origins = [
 	        'http://localhost:4200',
+	        'http://localhost:4201',
+	        'https://imandi-workshop.netlify.app',
 	        'https://tribe-framework.org',
 	        'https://tribe.tribe-framework.org',
 	        'https://junction.tribe-framework.org',

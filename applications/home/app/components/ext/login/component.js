@@ -4,9 +4,11 @@ import { tracked } from '@glimmer/tracking';
 import { service } from '@ember/service';
 import fetch from 'fetch';
 import { Toast } from 'bootstrap';
+import ENV from 'home/config/environment';
 
 export default class ExtLoginComponent extends Component {
   @service user;
+  @service cookies;
   @service router;
   @service store;
 
@@ -32,12 +34,19 @@ export default class ExtLoginComponent extends Component {
             this.toastMessage =
               '✅ <strong>CHECK YOUR INBOX.</strong><br>OTP has been sent to your email address.';
             this.toast.show();
-            fetch(
-              'https://tribe.imandi-dev.in/custom/sendotp.php?email=' +
-                this.user.email +
-                '&otp=' +
-                this.generatedOTP
-            );
+            fetch(ENV.TribeENV.API_URL + '/custom/auth/sendotp.php', {
+              method: 'post',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: this.user.email,
+                otp: this.generatedOTP,
+              }),
+            }).then((response) => {
+              //do something awesome that makes the world a better place
+            });
           } else {
             this.toastMessage = '⚠️ Email address invalid.';
             this.toast.show();
@@ -62,13 +71,29 @@ export default class ExtLoginComponent extends Component {
   }
 
   @action
-  checkOTP() {
-    if (this.inputOTP == this.generatedOTP || this.inputOTP == '123456') {
-      this.user.setCookie('imandi_user_email', this.user.email, 365);
+  async checkOTP() {
+    if (this.inputOTP == this.generatedOTP) {
+      this.cookies.setCookie('tribe_user_email', this.user.email, 365);
       this.toastMessage =
         '✅ <strong>Validation successful!</strong> Redirecting...';
       this.toast.show();
-      window.location = '/platform/home';
+
+      await this.user.loadUser(this.user.email);
+
+      fetch(ENV.TribeENV.API_URL + '/custom/auth/login.php', {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: this.user.currentUser.modules,
+        }),
+      }).then(async (response) => {
+        let resp = await response.json();
+        this.cookies.setCookie('tribe_user_jwt', resp.jwt, 365);
+        window.location = '/';
+      });
     } else {
       this.toastMessage = 'Invalid OTP. Please try again.';
       this.toast.show();
